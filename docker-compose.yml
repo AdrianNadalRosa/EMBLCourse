@@ -1,0 +1,16 @@
+services:
+  tifosi:
+    image: tifosi-image 
+    volumes:
+      - ./tifosi-files:/home/jovyan/tifosi-files
+    ports:
+      - "8888:8888"
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c "mkdir -p /home/jovyan/tifosi-files &&
+         cd /home/jovyan/tifosi-files &&
+         cp -r /home/jovyan/src/TiFoSi /home/jovyan/tifosi-files/ &&
+         cd TiFoSi &&
+         chmod +x buildandrun &&
+         start-notebook.py"
